@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/allProjectsProject">
+
+    <TextView
+        android:id="@+id/allProjectName"
+        android:text="@string/nameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/allProjectDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/allProjectCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/allProjectLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/deleteProjectBtn"
+            android:textSize="11sp"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:text="@string/deleteProjectButtonText" />
+
+        <Button
+            android:id="@+id/editProjectBtn"
+            android:textSize="11sp"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:text="@string/editProjectButtonText"/>
+
+        <Button
+            android:id="@+id/projectViewVolsBtn"
+            android:textSize="11sp"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:text="@string/viewVolsButtonText" />
+
+        <Button
+            android:id="@+id/projectAddVolsBtn"
+            android:textSize="11sp"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:text="@string/projectAddVolunteersButtonText" />
+    </LinearLayout>
+
+</LinearLayout>

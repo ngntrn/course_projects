@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="ngantran.cs496final.MainActivity">
+
+
+    <Button
+        android:id="@+id/viewAllProjectsBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/viewProjectsButtonText" />
+
+    <Button
+        android:id="@+id/viewAllVolunteersBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/viewVolsButtonText" />
+
+    <Button
+        android:id="@+id/addProjectBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/addProjectButtonText" />
+
+    <Button
+        android:id="@+id/addVolunteerBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/addVolButtonText" />
+</LinearLayout>
