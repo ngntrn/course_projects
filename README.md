@@ -1,1 +1,1 @@
-Projects for OSU courses 
+OSU course projects 
