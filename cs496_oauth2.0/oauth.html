@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Results</title>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    </head>
+    
+    <body>
+        <br>
+        <br>
+        <br>
+        <div class="container">
+            <div class="jumbotron">
+                <h1 class="centered-text display-3">Results</h1>
+                    <p class="lead centered-text">
+                    <div class ="well"> 
+                        <p class="lead centered-text">
+                            Google+ account information:
+                        </p>
+                        <div class ="panel panel-default">
+                        <div class ="panel-body"><ul class ="list-unstyled"> 
+                            <li><strong>First Name</strong>: {{ f_name }}</li>
+                            <li><strong>Last Name</strong>: {{ l_name }}</li>
+                            <li><strong>Profile</strong>: <a href="{{ profile }}">{{ profile_link }}</a></li>
+                            <br>
+                            <li><strong>State</strong>: {{ state }}</li>
+                        </ul></div>
+                        </div>
+                        <p>
+                        {{noResults}}
+                        </p>
+                     </div>
+                    </p>
+            </div>
+        </div>
+    </body>
+</html>
