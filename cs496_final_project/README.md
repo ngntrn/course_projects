@@ -1,3 +1,3 @@
-Final Android app project for CS 496 (Mobile and Cloud Software Development) 
+<b>CS 496 Mobile and Cloud Software Development</b> WINTER 2018<br>
+Final Android app project
 
-Winter 2018 Term 
