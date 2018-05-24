@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Artsy API How-To Guide</title>
+	  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+	
+	
+<link rel="stylesheet" href="style.css" type="text/css">
+
+</head>
+
+
+
+<body>
+
+<div class="container">
+  <div class="jumbotron" id="jumbo-site-name">
+     API How-To Guide 
+  </div>
+  
+<nav id = "nav-bar" class = "navbar navbar-default">
+  <div class="container-fluid">
+    <div>
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Introduction</a></li>
+        <li><a href="getting-started.html">Getting Started</a></li>
+        <li><a href="making-api-requests.html">Making Requests</a></li> 
+        <li class="active"><a href="using-data.html">Using Data</a></li> 
+        <li><a href="random-image.html">Random Image</a></li> 
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class = "well well-lg">
+	<h3 class ="well-name"> Getting Data</h3>
+	<hr>
+	
+	<p>
+	Using what we have learned so far, we will now be able to retrieve anything in the Artsy database: artists, artwork, images, shows, profiles, and genes. <br>
+	<h4> Search API</h4>
+	We are able to search for anything by following the search link from root with a query parameter. 
+		<pre>curl -v "https://api.artsy.net/api/search?q=Vincent+Van+Gogh+Starry+Night" -H "X-XAPP-Token:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IiIsImV4cCI6MTQ5Njg0ODQ4NCwiaWF0IjoxNDk2MjQzNjg0LCJhdWQiOiI1OTI0NWI0ZGNkNTMwZTY0NmYwYTc5ZmIiLCJpc3MiOiJHcmF2aXR5IiwianRpIjoiNTkyZWRkZTQyNzViMjQzNjJkYmMyYjAwIn0.MClh-kLLhzbE4LdYDVpJlZTfoslRh-xPK7-xpPpYShI"
+		</pre>
+	The results of this request is in the following JSON format:
+		<ul>
+		<li> type: Result type.
+		<li> title: Title.
+		<li> description: Description or snippet. 
+		<li> og_type: Open-graph type. 
+		</ul>
+	For this next example, I will retreive an image of a piece of artwork by <b>Vincent Van Gogh</b> using the same JSON document was before.
+	<pre> {
+"id":"4d8b92944eb68a1b2c000264",
+"slug":"vincent-van-gogh",
+"created_at":"2010-08-23T20:54:08+00:00",
+"updated_at":"2017-06-02T23:01:39+00:00",
+"name":"Vincent van Gogh","sortable_name":"van Gogh Vincent",
+"gender":"male","birthday":"1853","hometown":"Zundert, Netherlands",
+"location":"Arles, France, Saint-RÃ©my, France and Auvers-sur-Oise, France",
+"nationality":"Dutch",
+"image_versions":["four_thirds","large","square","tall"],"_links":{"thumbnail":{"href":"https://d32dm0rphc51dk.cloudfront.net/wMhDVMZP68ERKRVE_c1k-g/four_thirds.jpg"},
+"image":{"href":"https://d32dm0rphc51dk.cloudfront.net/wMhDVMZP68ERKRVE_c1k-g/{image_version}.jpg",
+"templated":true},
+"self":{"href":"https://api.artsy.net/api/artists/4d8b92944eb68a1b2c000264"},
+"permalink":{"href":"http://www.artsy.net/artist/vincent-van-gogh"},
+"artworks":{"href":"https://api.artsy.net/api/artworks?artist_id=4d8b92944eb68a1b2c000264"},
+"published_artworks":{"href":"https://api.artsy.net/api/artworks?artist_id=4d8b92944eb68a1b2c000264&published=true"},
+"similar_artists":{"href":"https://api.artsy.net/api/artists?similar_to_artist_id=4d8b92944eb68a1b2c000264"},
+"similar_contemporary_artists":{"href":"https://api.artsy.net/api/artists?similar_to_artist_id=4d8b92944eb68a1b2c000264&similarity_type=contemporary"},
+"genes":{"href":"https://api.artsy.net/api/genes?artist_id=4d8b92944eb68a1b2c000264"}}}
+	</pre>
+	This time, we will focus on the image key:
+	<pre>"image":{"href":"https://d32dm0rphc51dk.cloudfront.net/wMhDVMZP68ERKRVE_c1k-g/{image_version}.jpg"</pre>
+	The following imagine will be shown once you fill out the {image_version} (I used "large").
+	<br><center><img src= "artworkimg.png"> </center><br>
+	
+	The search API can also be used to search for a specific piece of artwork. For example, I will not utilize this API to search for Van Gogh's piece: <b>Starry Night</b> using my token:
+	<pre>curl -v "https://api.artsy.net/api/search?q=Vincent+Van+Gogh+Starry+Night" -H "X-XAPP-Token: YOUR_TOKEN"</pre>
+	This request results in the following JSON response:
+	<pre>{"total_count":13705,
+"offset":0,
+"q":"Vincent Van Gogh Starry Night",
+"_links":{"self":{"href":"https://api.artsy.net/api/search?offset=0&q=Vincent+Van+Gogh+Starry+Night&size=10"},
+"next":{"href":"https://api.artsy.net/api/search?offset=10&q=Vincent+Van+Gogh+Starry+Night&size=10"}},
+"_embedded":{"results":[{"type":"artwork","title":"Vincent van Gogh, Starry Night, Arles (1888)","description":"Oil on canvas","og_type":"artwork","_links":{
+"self":{"href":"https://api.artsy.net/api/artworks/5084459a4467430002000273"},
+"permalink":{"href":"http://www.artsy.net/artwork/5084459a4467430002000273"},
+"thumbnail":{"href":"https://d32dm0rphc51dk.cloudfront.net/tLEWfq9AOi8Z_PhuseH5Ag/square.jpg"}}},
+{"type":"artwork","title":"Vincent van Gogh, Starry Night (1889)","description":"Oil on canvas, 28 3/4 Ã— 36 1/4 in","og_type":"artwork","_links":{
+"self":{"href":"https://api.artsy.net/api/artworks/521e6928275b24041a00084c"},
+"permalink":{"href":"http://www.artsy.net/artwork/521e6928275b24041a00084c"},
+"thumbnail":{"href":"https://d32dm0rphc51dk.cloudfront.net/aQSntdLiI8DkpDk6VenKNw/square.jpg"}}},
+{"type":"artwork","title":"Vincent van Gogh, Starry Night over the RhÃ´ne (1888)","description":"","og_type":"artwork","_links":{"self":{"href":"https://api.artsy.net/api/artworks/55d4d5437261697342000076"},
+"permalink":{"href":"http://www.artsy.net/artwork/55d4d5437261697342000076"},"thumbnail":{"href":"https://d32dm0rphc51dk.cloudfront.net/990GkeoTMtRJNu17nWwAOA/square.jpg"}}},
+{"type":"artist","title":"Vincent van Gogh","description":null,"og_type":"artist","_links":{"self":{"href":"https://api.artsy.net/api/artists/4d8b92944eb68a1b2c000264"},
+"permalink":{"href":"http://www.artsy.net/artist/vincent-van-gogh"},
+"thumbnail":{"href":"https://d32dm0rphc51dk.cloudfront.net/wMhDVMZP68ERKRVE_c1k-g/square.jpg"}}},
+{"type":"profile","title":"Van Gogh Museum","description":"The Van Gogh Museum in Amsterdam houses the largest collection of art works by Vincent van Gogh in the world. The permanent collection includes more than 200 paintings by Vincent van Gogh, 500 drawings and more than 800 letters. ","og_type":"profile","_links":{"self":{"href":"https://api.artsy.net/api/profiles/544ec3667261692d5e4c0600"},"permalink":{"href":"http://www.artsy.net/profile/vangogh-museum"},"thumbnail":{"href":"https://d32dm0rphc51dk.cloudfront.net/ralcLixbqN6QZlwpsEiWlg/square.jpg"}}},{"type":"show","title":"Easy Virtue. Prostitution in French Art, 1850-1910","description":null,"og_type":"show","_links":{
+"self":{"href":"https://api.artsy.net/api/shows/57237060275b24798e004bda"},
+"permalink":{"href":"http://www.artsy.net/show/van-gogh-museum-easy-virtue-prostitution-in-french-art-1850-1910"},"thumbnail":{"href":"https://d32dm0rphc51dk.cloudfront.net/Y4F7AkicqcGvz0D1M5AfQg/square.jpg"}}},{"type":"article","title":"Happy birthday, Vincent van Gogh ","description":"Vincent van Gogh painted his own portrait many times, always with a stunning likeness. Yet no matter the precision of his short, frenetic brushstrokes...","og_type":"article","_links":{
+"permalink":{"href":"http://www.artsy.net/article/editorial-happy-birthday-vincent-van-gogh"},
+"thumbnail":{"href":"https://d7hftxdivxxvm.cloudfront.net/?resize_to=fill&width=70&height=70&quality=95&src=http%3A%2F%2Fi1.ytimg.com%2Fvi%2FHnnO8DwqaYk%2Fhqdefault.jpg"}}},{"type":"show","title":"When I Give, I Give Myself","description":null,"og_type":"show","_links":{"self":{"href":"https://api.artsy.net/api/shows/55d4cae9726169772a00007f"},"permalink":{"href":"http://www.artsy.net/show/van-gogh-museum-when-i-give-i-give-myself"},"thumbnail":{"href":"https://d32dm0rphc51dk.cloudfront.net/y5C-L4ThCw27gSwoqGQcJw/square.jpg"}}},
+{"type":"show","title":"Munch : Van Gogh","description":null,"og_type":"show","_links":
+{"self":{"href":"https://api.artsy.net/api/shows/55d4d18672616918aa000099"},
+"permalink":{"href":"http://www.artsy.net/show/van-gogh-museum-munch-van-gogh"},
+"thumbnail":{"href":"https://d32dm0rphc51dk.cloudfront.net/VNH4FhuY68GBUFky_ZzEBg/square.jpg"}}},
+{"type":"show","title":"Van Gogh and Nature","description":null,"og_type":"show","_links":{"self":{"href":"https://api.artsy.net/api/shows/559ec29c72616970e20000ec"},
+"permalink":{"href":"http://www.artsy.net/show/clark-art-institute-van-gogh-and-nature"},
+"thumbnail":{"href":"https://d32dm0rphc51dk.cloudfront.net/zU-IrrmZUdNO3zEQ_F0w3g/square.jpg"}}}]}}</pre>
+	To obtain the image the desired image, read through the descriptions and select the appropriate self href. I chose to following the following link: <pre>https://api.artsy.net/api/artworks/521e6928275b24041a00084c</pre>
+	I then used the image key as demonstrated above and filled in the appropriate size to obtain the following image:
+		<br><br><center><img src="starrynight.png"></center>
+	</p>
+	
+</div> 
+
+
+<div class = "container">
+<ul class = "pager">
+	<li class = "back"><a href ="making-api-requests.html"> &larr; Go Back </a>
+	<li class ="foward"><a href="random-image.html">Foward&rarr; </a>
+</ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang = "en"> 
+<head>
+	<title> Artsy API How-To Guide</title>
+	
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+	
+	<link rel="stylesheet" href="style.css" type="text/css">
+	
+</head>
+
+<body>
+
+<div class="container">
+  <div class="jumbotron" id="jumbo-site-name">
+     API How-To Guide 
+  </div>
+  
+<nav id = "vav-bar" class = "navbar navbar-default">
+  <div class="container-fluid">
+    <div>
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Introduction</a></li>
+        <li class ="active"><a href="getting-started.html">Getting Started</a></li>
+        <li><a href="making-api-requests.html">Making Requests</a></li> 
+        <li><a href="using-data.html">Using Data</a></li> 
+        <li><a href="random-image.html">Random Image</a></li> 
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class= "jumobotron" id = "top-nav-jumbo">
+	<h1 id = "jumbo-name">Getting Started</h1>
+</div>
+
+<div id = "well1" class ="well well-lg">
+	<h3 class ="well_name"> Signing Up</h3>
+	<hr>
+	<p> Before you can start using the API to make calls, you will first need to sign up for an Artsy developer account. Please follow the following link to do so: <a href="https://www.artsy.net/sign_up?redirect_uri=https%3A%2F%2Fdevelopers.artsy.net%2Fstart">artsy.net/sign_up</a>.<br>
+	
+	<br>Once you're all signed in, you are now able to obtain an authentication token that can be used to make API requests by POSTing to /api/tokens/xapp_token. This is done using curl. The client_id and client_secret codes are given to you once you make a new app. Fill in the given IDs and run the following using curl: 
+	<pre>curl -v -X POST "https://api.artsy.net/api/tokens/xapp_token?client_id=XXXX&client_secret=XXXX"
+	</pre>
+	The following JSON will be returned with your token:
+	<pre>{
+"type": "xapp_token",
+ "token": "YOUR_TOKEN",
+ "expires_at": "EXPIRATION_DATE_AND_TIME",
+ "_links": {
+ }
+ }
+	</pre>
+	This token can then be used to make API requests. I will show you how to do this in the next section. 
+	</p>
+</div>
+
+
+<div class = "container">
+<ul class = "pager">
+	<li class = "forward"><a href ="index.html"> &larr; Go Back </a>
+	<li class ="back"> <a href ="making-api-requests.html">Foward &rarr;</a>
+</ul>
+</div>
+
+
+</body>
