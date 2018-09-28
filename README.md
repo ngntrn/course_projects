@@ -1,1 +1,1 @@
-A few Oregon State University course projects 
+Oregon State University course projects 
