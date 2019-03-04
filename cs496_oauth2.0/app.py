@@ -78,7 +78,7 @@ class OAuthHandler(webapp2.RequestHandler):
             if item == 'url':
                 found_profile = True
 
-        # if the accound info is retrieved
+        # if the account info is retrieved
         if found_f_name and found_l_name and found_profile:
             f_name = json_result['name']['givenName']
             l_name = json_result['name']['familyName']
